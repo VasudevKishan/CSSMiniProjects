@@ -42,5 +42,15 @@ body {
 @media (max-width: 800px) {
     body {
         flex-direction: column;
+        max-height: 100vh;
+    }
+    .empty {
+        flex: 0 0 100px;
+        width: 100px;
+    }
+    .fill {
+        height: 100px;
+        width: 100px;
+        background-repeat: no-repeat;
     }
 }
