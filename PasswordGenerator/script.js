@@ -7,13 +7,6 @@ const symbolsEl = document.getElementById("symbols");
 const generateEl = document.getElementById("generate");
 const clipboardEl = document.getElementById("clipboard");
 
-const randomFunc = {
-    lower: getRandomLower,
-    upper: getRandomUpper,
-    number: getRandomNumber,
-    symbol: getRandomSymbols,
-};
-
 // clipboardEl.addEventListener("click", () => {
 //     const textarea = document.createElement("textarea");
 //     const password = resultEl.innerText;
@@ -61,26 +54,48 @@ generateEl.addEventListener("click", () => {
     );
 });
 
+const randomFunc = {
+    lower: getRandomLower,
+    upper: getRandomUpper,
+    number: getRandomNumber,
+    symbol: getRandomSymbols,
+};
+
 function generatePassword(lower, upper, number, symbol, length) {
     let generatedPassword = "";
     const typesCount = lower + upper + number + symbol;
     const typesArr = [{lower}, {upper}, {number}, {symbol}].filter(
-        (item) => Object.values(item)[0] //get the values array and get first and only element
+        (item) => Object.values(item)[0]
     );
 
+    // Return an empty string if no types are selected
     if (typesCount === 0) {
         return "";
     }
 
+    // Generate the password
     for (let i = 0; i < length; i += typesCount) {
         typesArr.forEach((type) => {
-            const funName = Object.keys(type)[0];
-            generatedPassword += randomFunc[funName]();
+            const funcName = Object.keys(type)[0];
+            generatedPassword += randomFunc[funcName]();
         });
     }
 
+    // Ensure the password is the correct length
     const finalPassword = generatedPassword.slice(0, length);
-    return finalPassword;
+
+    // Shuffle the final password to avoid predictable patterns
+    return shuffleString(finalPassword);
+}
+
+// Helper function to shuffle a string
+function shuffleString(str) {
+    const arr = str.split("");
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr.join("");
 }
 
 // 97 - is ascii code for 'a'
@@ -102,3 +117,51 @@ function getRandomSymbols() {
     const symbols = "!@#$%^&*(){}[]=<>/,.";
     return symbols[Math.floor(Math.random() * symbols.length)];
 }
+
+// function generatePassword(lower, upper, number, symbol, length) {
+//     let generatedPassword = "";
+//     const typesCount = lower + upper + number + symbol;
+//     const typesArr = [{lower}, {upper}, {number}, {symbol}].filter(
+//         (item) => Object.values(item)[0] //get the values array and get first and only element
+//     );
+
+//     if (typesCount === 0) {
+//         return "";
+//     }
+
+//     for (let i = 0; i < length; i += typesCount) {
+//         typesArr.forEach((type) => {
+//             const funName = Object.keys(type)[0];
+//             generatedPassword += randomFunc[funName]();
+//         });
+//     }
+
+//     const finalPassword = generatedPassword.slice(0, length);
+//     return finalPassword;
+// }
+
+/*
+//this function generates random type at any position
+function generatePassword(lower, upper, number, symbol, length) {
+    let generatedPassword = "";
+    const typesCount = lower + upper + number + symbol;
+    const typesArr = [{lower}, {upper}, {number}, {symbol}].filter(
+        (item) => Object.values(item)[0] //get the values array and get first and only element
+    );
+
+    if (typesCount === 0) {
+        return "";
+    }
+
+    for (let i = 0; i < length; i++) {
+        const randTypeName =
+            typesArr[Math.floor(Math.random() * typesArr.length)];
+        const funcName = Object.keys(randTypeName)[0];
+        // console.log(Object.keys(randTypeName)[0]);
+        generatedPassword += randomFunc[funcName]();
+    }
+
+    const finalPassword = generatedPassword;
+    return finalPassword;
+}
+    */
