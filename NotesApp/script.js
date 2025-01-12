@@ -1,4 +1,5 @@
 const addBtn = document.getElementById("add");
+const clearBtn = document.getElementById("clear");
 
 const notes = JSON.parse(localStorage.getItem("notes"));
 
@@ -7,6 +8,7 @@ if (notes) {
 }
 
 addBtn.addEventListener("click", () => addNewNote());
+clearBtn.addEventListener("click", () => clearLS());
 
 function addNewNote(text = "") {
     const note = document.createElement("div");
@@ -55,4 +57,10 @@ function updateLS() {
     notesText.forEach((note) => notes.push(note.value));
 
     localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+function clearLS() {
+    localStorage.clear();
+    const notes = document.querySelectorAll(".note");
+    notes.forEach((note) => note.remove());
 }

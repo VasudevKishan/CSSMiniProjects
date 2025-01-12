@@ -25,6 +25,18 @@ body {
     cursor: pointer;
 }
 
+.clear {
+    position: fixed;
+    top: 1rem;
+    right: 8rem;
+    background-color: #9ec862;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    color: white;
+    cursor: pointer;
+}
+
 .note {
     background-color: white;
     box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
