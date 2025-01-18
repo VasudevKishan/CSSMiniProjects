@@ -13,16 +13,24 @@ body {
     margin: 0;
 }
 img {
-    width: 330px;
+    /* width: 330px; */
     height: 500px;
     object-fit: cover;
+}
+
+.container {
+    padding: 1rem;
+    background-color: gray;
+    border-radius: 2rem;
 }
 
 .carousel {
     box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
     height: 530px;
-    width: 330px;
+    /* width: 330px; */
     overflow: hidden;
+    transition: width 0.5s ease-in-out;
+    border-radius: 1rem;
 }
 
 .image-container {
@@ -37,11 +45,11 @@ img {
 }
 
 .btn {
-    background-color: rebeccapurple;
+    background-color: rgba(0, 51, 255, 0.779);
     columns: white;
     border: none;
     padding: 0.5rem;
-    width: 49.5%;
+    width: 50%;
     height: 30px;
 }
 

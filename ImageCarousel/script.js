@@ -1,12 +1,12 @@
 const imgs = document.getElementById("imgs");
 const leftBtn = document.getElementById("left");
 const rightBtn = document.getElementById("right");
-
+const carousel = document.querySelector(".carousel");
 const img = document.querySelectorAll("#imgs img");
 
 console.log(img);
 let idx = 0;
-
+carousel.style.width = `${img[idx].clientWidth}px`;
 let interval = setInterval(run, 2000);
 
 function run() {
@@ -21,7 +21,14 @@ function changeImage() {
         idx = img.length - 1;
     }
 
-    imgs.style.transform = `translateX(${-idx * 330}px)`;
+    let transformWidth = 0;
+    for (let i = 0; i <= idx - 1; i++) {
+        transformWidth += Math.floor(img[i].clientWidth);
+    }
+    // imgs.style.transform = `translateX(${-idx * 330}px)`;
+    img[idx].style.width = `${Math.floor(img[idx].clientWidth) - 1}px`;
+    carousel.style.width = `${Math.floor(img[idx].clientWidth)}px`;
+    imgs.style.transform = `translateX(${-transformWidth}px)`;
 }
 
 function resetInterval() {
