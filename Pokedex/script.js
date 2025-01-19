@@ -1,22 +1,22 @@
-//TODO add flip effect which shows shiny version of the pokemon
+//TODO add case for pokemons without shiny forms
 const poke_container = document.getElementById("poke-container");
 const pokemon_count = 150;
 
 const colors = {
     fire: "#FDDFDF",
-    grass: "#DEFDE0",
-    electric: "#FCF7DE",
+    grass: "#98d7a5",
+    electric: "#f6f9be",
     water: "#DEF3FD",
-    ground: "#f4e7da",
+    ground: "#dfba95",
     rock: "#d5d5d4",
     fairy: "#fceaff",
-    poison: "#98d7a5",
-    bug: "#f8d5a3",
+    poison: "#cb92ec",
+    bug: "#DEFDE0",
     dragon: "#97b3e6",
     psychic: "#eaeda1",
     flying: "#F5F5F5",
     fighting: "#E6E0D4",
-    normal: "#F5F5F5",
+    normal: "#c3c3c3",
 };
 
 const main_types = Object.keys(colors);
@@ -47,6 +47,7 @@ const createPokemonCard = (pokemon) => {
     pokemonEl.style.backgroundColor = color;
 
     const pokemonInnerHTML = `
+    <div class="face front">
         <div class="img-container">
                     <img
                         src=${pokemon.sprites.other["official-artwork"].front_default}
@@ -58,10 +59,29 @@ const createPokemonCard = (pokemon) => {
                     <h3 class="name">${name}</h3>
                     <small class="type">Type: <span>${type}</span></small>
                 </div>
+    </div>
+    <div class="face back">
+        <div class="img-container">
+                    <img
+                        src=${pokemon.sprites.other["official-artwork"].front_shiny}
+                        alt=""
+                    />
+                </div>
+                <div class="info">
+                    <span class="number">#${id}</span>
+                    <h3 class="name">${name} <small>Shiny</small></h3>
+                    <small class="type">Type: <span>${type}</span></small>
+                </div>
+    </div>
+
     `;
 
     pokemonEl.innerHTML = pokemonInnerHTML;
     poke_container.appendChild(pokemonEl);
+
+    pokemonEl.addEventListener("click", () => {
+        pokemonEl.classList.toggle("flip");
+    });
 };
 
 fetchPokemons();
