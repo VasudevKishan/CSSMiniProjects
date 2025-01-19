@@ -1,3 +1,4 @@
+//TODO add flip effect which shows shiny version of the pokemon
 const poke_container = document.getElementById("poke-container");
 const pokemon_count = 150;
 
