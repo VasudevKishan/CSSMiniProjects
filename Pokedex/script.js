@@ -48,7 +48,7 @@ const createPokemonCard = (pokemon) => {
     const pokemonInnerHTML = `
         <div class="img-container">
                     <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"
+                        src=${pokemon.sprites.other["official-artwork"].front_default}
                         alt=""
                     />
                 </div>
