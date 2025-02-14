@@ -1,0 +1,133 @@
+:root {
+    --bounce: linear(
+        0,
+        0.12 5.7%,
+        0.36 17.7%,
+        0.476 23.1%,
+        0.622 29.3%,
+        0.904 40.5%,
+        1 44.7%,
+        0.926 48.6%,
+        0.9 50.3%,
+        0.879 52%,
+        0.862 53.7%,
+        0.85 55.4%,
+        0.843 57%,
+        0.84 58.7%,
+        0.842 60.1%,
+        0.847 61.6%,
+        0.856 63.1%,
+        0.868 64.7%,
+        0.896 67.6%,
+        0.97 74.2%,
+        1 77.4%,
+        0.987 79.5%,
+        0.98 81.1%,
+        0.975 82.8%,
+        0.974 84.6%,
+        0.977 87.7%,
+        0.997 95.3%,
+        0.999 97.5%,
+        1
+    );
+    --arc: 5deg;
+    --distance-multiplier: 15%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: darkgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.fancy-hover a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.fancy-hover {
+    list-style-type: square;
+
+    &:has(li:nth-child(1):hover) {
+        --target: 1;
+    }
+    &:has(li:nth-child(2):hover) {
+        --target: 2;
+    }
+    &:has(li:nth-child(3):hover) {
+        --target: 3;
+    }
+    &:has(li:nth-child(4):hover) {
+        --target: 4;
+    }
+    &:has(li:nth-child(5):hover) {
+        --target: 5;
+    }
+    &:has(li:nth-child(6):hover) {
+        --target: 6;
+    }
+    &:has(li:nth-child(7):hover) {
+        --target: 7;
+    }
+    &:has(li:nth-child(8):hover) {
+        --target: 8;
+    }
+    &:has(li:nth-child(9):hover) {
+        --target: 9;
+    }
+    &:has(li:nth-child(10):hover) {
+        --target: 10;
+    }
+
+    @media (hover) and (prefers-reduced-motion: no-preference) {
+        & > li {
+            transform-origin: -200% 50%;
+            transition: transform 0.5s var(--bounce), opacity 0.3s linear;
+        }
+
+        &:has(> li:hover) > li:not(:hover),
+        &:has(> li:focus-within) > li:not(:focus-within) {
+            /* position: relative; */
+            /* --distance-from-target: abs(var(--sibling-index) - var(--target));
+            --distance-multiplier-calculation: var(--distance-from-target) *
+                var(--distance-multiplier);
+            --gradual-fadeout: calc(
+                100% - var(--distance-multiplier-calculation)
+            );
+            opacity: var(--gradual-fadeout);
+
+            --angle: calc((var(--sibling-index) - var(--target)) * var(--arc));
+
+            transform: rotateZ(var(--angle)); */
+
+            --distance-from-target: max(
+                (calc(var(--sibling-index) - var(--target))),
+                (calc(var(--target) - var(--sibling-index)))
+            );
+            --distance-multiplier-calculation: calc(
+                var(--distance-from-target) * 15%
+            );
+            --gradual-fadeout: calc(
+                100% - var(--distance-multiplier-calculation)
+            );
+            opacity: var(--gradual-fadeout);
+
+            /* --angle: calc(var(--distance-from-target) * var(--arc)); */
+            --angle: calc((var(--sibling-index) - var(--target)) * var(--arc));
+            transform: rotateZ(var(--angle));
+
+            /* opacity: 0.25; */
+            /* transform: scale(0.8); */
+        }
+    }
+}
