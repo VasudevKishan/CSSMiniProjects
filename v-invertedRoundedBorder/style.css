@@ -10,6 +10,12 @@
     --green: #00ff00;
     --pink: #fb00ff;
 }
+button {
+    border: none;
+}
+button:focus {
+    outline: none;
+}
 
 body {
     background: var(--grey);
@@ -60,8 +66,65 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: end;
+    text-align: center;
+    color: rgb(174, 174, 174);
 }
 
 .card .content .title {
+    text-transform: uppercase;
+    color: #fff;
     font-weight: bold;
+}
+
+.card button {
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    font-style: inherit;
+}
+
+.card .icon {
+    color: #fff;
+    font-size: 3rem;
+    z-index: 100;
+    position: absolute;
+    margin-left: -4px;
+    margin-top: -4px;
+    padding: 20px 20px;
+    border: 8px solid;
+    border-top-left-radius: 38px;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.card.bg-blue .icon {
+    border-color: var(--blue);
+}
+
+.card.bg-pink .icon {
+    border-color: var(--pink);
+}
+
+.card.bg-green .icon {
+    border-color: var(--green);
+}
+
+.card::before {
+    content: "";
+    z-index: 1000;
+    position: absolute;
+    /* background-color: var(--grey); */
+    background-color: yellow;
+    width: 10px;
+    height: 10px;
+    border-top-left-radius: 20px;
+
+    /* top: 98px; */
+    top: 400px;
+    left: 5px;
 }
